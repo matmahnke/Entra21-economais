@@ -1,0 +1,44 @@
+﻿@model DTO.Usuario
+
+<div class="top-brands">
+    <h2>Minha Conta</h2>
+    <div class="login-page">
+        <div class="form">
+            <form class="register-form">
+                <input type="text" placeholder="name" />
+                <input type="password" placeholder="password" />
+                <input type="text" placeholder="email address" />
+                <button>create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form>
+            <form method="post" class="login-form">
+                <p class="message"><a>Alterar Nome</a></p>
+                @Html.TextBoxFor(c => c.Nome)
+                <br />
+                <p class="message"><a>Alterar Sobrenome</a></p>
+                @Html.TextBoxFor(c => c.Sobrenome)
+                <br />
+                <p class="message"><a>Alterar Email</a></p>
+                @Html.TextBoxFor(c => c.Email)
+                <br />
+                <p class="message"><a>Alterar Localização</a></p>
+                @Html.TextBoxFor(c => c.Localizacao)
+                <br />
+                <p class="message"><a>Alterar Senha</a></p>
+                <input type="password" placeholder="Senha atual" />
+                <br />
+                @Html.PasswordFor(c => c.Senha, new { placeholder = "Nova senha" })
+                <br />
+                <input type="password" placeholder="Confirmar Nova Senha" />
+                <br />
+                @if (ViewBag.message != null)
+                {
+                    <p class="message">@ViewBag.message</p>
+                }
+                <br />
+                <button>salvar</button>
+            </form>
+        </div>
+    </div>
+</div>k
+

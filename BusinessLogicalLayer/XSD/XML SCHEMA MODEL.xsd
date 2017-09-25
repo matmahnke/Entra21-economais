@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ArrayOfProduto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Produto">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nome" type="xs:string" />
+              <xs:element name="Preco" type="xs:unsignedShort" />
+              <xs:element name="Quantidade" type="xs:unsignedByte" />
+              <xs:element name="Peso" type="xs:unsignedByte" />
+              <xs:element name="Imagem" type="xs:string" />
+              <xs:element name="Promocao" type="xs:unsignedByte" />
+              <xs:element name="DataDeInicio" type="xs:dateTime" />
+              <xs:element name="DataDeTermino" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

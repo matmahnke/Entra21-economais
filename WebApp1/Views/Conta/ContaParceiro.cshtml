@@ -1,0 +1,273 @@
+﻿@model IEnumerable<DTO.Produto>
+<div class="top-brands">
+    <div class="container">
+        <h2>Minha Conta</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">ALTERAR PRODUTOS</a></li>
+                    <li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">INFORMAÇÕES</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile-tp" style="width:600px;">
+                            <div class="login-page">
+                                <div class="form" style="max-width: none;width:600px;">
+                                    <form class=" register-form">
+                                        <input type="text" placeholder="name" />
+                                        <input type="password" placeholder="password" />
+                                        <input type="text" placeholder="email address" />
+                                        <button>create</button>
+                                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                                    </form>
+                                    <form class="login-form" method="post" name="formsetor" id="formsetor">
+                                        <br />
+                                        <input type="text" name="NomeDoSetor" placeholder="Setor" />
+                                        <input type="submit" value="Inserir setor" />
+                                        <text>@ViewBag.InsertSetor</text>
+                                        <br />
+                                        <select name="setores" id="setores" class="login-form" onchange="this.form.submit()">
+                                            <text>Setores</text>
+
+                                            @try
+                                            {
+                                                foreach (string item in ViewBag.setores)
+                                                {
+                                                    if (ViewBag.SetorSelecionado != null && ViewBag.SetorSelecionado == item)
+                                                    {
+                                                        <option selected value="@item"> @item</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item"> @item</option>
+                                                    }
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+
+                                            }
+                                        </select>
+                                        <br />
+                                    </form>
+                                    <button onclick="abrirCadastro()">Adicionar produto</button>
+                                    <form class="login-form" method="post">
+                                        <br />
+                                        <input type="text" name="Produtosetores" id="Produtosetores" value="" itemscope itemref="setores" hidden />
+                                        <input type="text" name="ProdutoNome" id="ProdutoNome" placeholder="Nome" hidden />
+                                        <input type="text" name="ProdutoPreco" id="ProdutoPreco" placeholder="Preco" hidden />
+                                        <input type="text" name="ProdutoPeso" id="ProdutoPeso" placeholder="Peso" hidden />
+                                        <input type="text" name="ProdutoQuantidade" id="ProdutoQuantidade" placeholder="Quantidade" hidden />
+                                        <input type="file" name="Produtologofile" id="Produtologofile" style="display:none;" hidden onchange="readFiles()" />
+                                        <input type="hidden" name="ProdutoImagem" id="ProdutoImagem" hidden>
+                                        <input type="text" name="ProdutoPromocao" id="ProdutoPromocao" placeholder="Promoção" hidden />
+                                        <input type="date" name="ProdutoDataDeInicio" id="ProdutoDataDeInicio" placeholder="Data de início" hidden />
+                                        <input type="date" name="ProdutoDataDeTermino" id="ProdutoDataDeTermino" placeholder="Data de término" hidden />
+                                        <button hidden id="CadastrarProduto" name="CadastrarProduto" onclick="callformsetor()">Cadastrar</button>
+                                        <text>@ViewBag.ErroInsertProduto</text>
+
+                                    </form>
+                                    @using (Html.BeginForm("ContaParceiro", "Conta", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <input type="file" name="uploadFile" accept="text/xml" />
+                                        <input type="hidden" name="xmlsetor" id="xmlsetor" value="" itemscope itemref="setores" hidden />
+                                        <input type="submit" value="Inserir XML" onclick="isSetor()" />
+                                        <script>
+                                            function isSetor() {
+                                                var e = document.getElementById("setores");
+                                                xmlsetor.value = e.options[e.selectedIndex].value;
+                                            }
+                                        </script>
+                                    }
+
+                                    <table class="table">
+                                        @try
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Preco)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Quantidade)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Peso)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Imagem)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Promocao)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.importancia)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Acessos)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DataDeInicio)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DataDeTermino)
+                                                    </td>
+                                                    <td>
+
+                                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                        }
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
+                        <div class="agile-tp">
+                            <div class="login-page">
+                                <div class="form">
+                                    <form class="register-form">
+                                        <input type="text" placeholder="name" />
+                                        <input type="password" placeholder="password" />
+                                        <input type="text" placeholder="email address" />
+                                        <button>create</button>
+                                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                                    </form>
+                                    <form method="post" class="login-form">
+                                        <p class="message"><a>Alterar Nome</a></p>
+                                        <input type="text" id="nome" name="nome" />
+                                        <br />
+                                        <p class="message"><a>Alterar Razão Social</a></p>
+                                        <input type="text" id="RazaoSocial" name="RazaoSocial" />
+                                        <br />
+                                        <p class="message"><a>Alterar CNPJ</a></p>
+                                        <input type="text" id="CNPJ" name="CNPJ" />
+                                        <br />
+                                        <p class="message"><a>Alterar E-mail</a></p>
+                                        <input type="text" id="Email" name="Email" />
+                                        <br />
+                                        <p class="message"><a>Alterar Telefone</a></p>
+                                        <input type="text" id="Telefone" name="Telefone" />
+                                        <br />
+                                        <p class="message"><a>Alterar Maps</a></p>
+                                        <input type="text" id="Maps" name="Maps" />
+                                        <br />
+                                        <p class="message"><a>Alterar Logo</a></p>
+                                        <input type="file" name="logofile" id="logofile" onchange="readFile()" value="" />
+                                        <input type="hidden" name="arraybyte" id="arraybyte">
+                                        <br />
+                                        <p class="message"><a>Alterar endereço</a></p>
+                                        <input type="text" id="Endereco" name="Endereco" />
+
+                                        <br />
+                                        <p class="message"><a>Alterar Senha</a></p>
+                                        <input type="password" placeholder="Senha atual" />
+                                        <br />
+                                        <input type="password" id="Senha" name="Senha" placeholder="Nova senha" />
+                                        <br />
+                                        <input type="password" placeholder="Confirmar Nova Senha" />
+
+                                        @if (ViewBag.message != null)
+                                        {
+                                            <p class="message">@ViewBag.message</p>
+                                        }
+                                        <br />
+                                        <button>salvar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function abrirCadastro() {
+        ProdutoNome.hidden = false;
+        ProdutoPreco.hidden = false;
+        ProdutoQuantidade.hidden = false;
+        $('#Produtologofile').css('display', 'block');
+        ProdutoPromocao.hidden = false;
+        ProdutoDataDeInicio.hidden = false;
+        ProdutoDataDeTermino.hidden = false;
+        CadastrarProduto.hidden = false;
+        ProdutoPeso.hidden = false;
+        var e = document.getElementById("setores");
+        Produtosetores.value = e.options[e.selectedIndex].value;
+    }
+    function readFile() {
+
+        if (this.files && this.files[0]) {
+
+            var FR = new FileReader();
+
+            FR.addEventListener("load", function (e) {
+                document.getElementById("arraybyte").value = e.target.result;
+            });
+
+            FR.readAsDataURL(this.files[0]);
+        }
+
+    }
+    function readFiles() {
+
+        if (this.files && this.files[0]) {
+
+            var FR = new FileReader();
+
+            FR.addEventListener("load", function (e) {
+                document.getElementById("ProdutoImagem").value = e.target.result;
+            });
+
+            FR.readAsDataURL(this.files[0]);
+        }
+
+    }
+    document.getElementById("Produtologofile").addEventListener("change", readFiles);
+
+    document.getElementById("logofile").addEventListener("change", readFile);
+    function Habilitar() {
+
+        document.getElementById("nome").disabled = false;
+        document.getElementById("preco").disabled = false;
+        document.getElementById("peso").disabled = false;
+        document.getElementById("promocao").disabled = false;
+        document.getElementById("produtos").disabled = false;
+    }
+    //os dados virão do banco
+    function Preencher() {
+        document.getElementById("nome").value = "Produto.Nome";
+        document.getElementById("preco").value = "Produto.Preço";
+        document.getElementById("peso").value = "Produto.Peso";
+        document.getElementById("promocao").value = "Produto.Promoção";
+    }
+
+    function Limpar() {
+        document.getElementById("nome").value = null;
+        document.getElementById("preco").value = null;
+        document.getElementById("peso").value = null;
+        document.getElementById("promocao").value = null;
+        document.getElementById("produtos").value = null;
+    }
+
+</script>
+
+

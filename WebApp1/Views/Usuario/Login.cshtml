@@ -1,0 +1,23 @@
+﻿
+
+<div class="login-page">
+    <div class="form">
+        <form class="register-form">
+            <input type="text" placeholder="name" />
+            <input type="password" placeholder="password" />
+            <input type="text" placeholder="email address" />
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form method="post" class="login-form">
+            <input name="username" type="text" placeholder="Usuário" />
+            <input name="senha" type="password" placeholder="Senha" />
+            <button>login</button>
+            @if (ViewBag.Erro != null)
+            {
+                <p class="message">@ViewBag.Erro</p>
+            }
+            
+        </form>
+    </div>
+</div>

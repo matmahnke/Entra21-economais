@@ -1,0 +1,91 @@
+﻿@model IList<DTO.Supermercado>
+@{int posicao = 0;
+List<DTO.Supermercado>[] vetorMercados = new List<DTO.Supermercado>[(Model.Count / 4) + 1];
+List<DTO.Supermercado> lista = new List<DTO.Supermercado>();
+int contador = 0;}
+
+
+<div class="skdslider">
+    <ul id="demo1" class="slides">
+        <li style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px; display: none;">
+            <img src="~/images/11.jpg" alt="">
+            <!--Slider Description example-->
+            <div class="slide-desc">
+                <h3>O Maior Site De Pesquisa De Preços</h3>
+            </div>
+        </li>
+        <li style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px; display: none;">
+            <img src="~/images/22.jpg" alt="">
+            <div class="slide-desc">
+                <h3>Budg Shop, O Que Você Precisa Com A Facilidade Que Deseja </h3>
+            </div>
+        </li>
+
+        <li style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px; display: list-item;">
+            <img src="~/images/44.jpg" alt="">
+            <div class="slide-desc">
+                <h3>O Maior Site De Pesquisa De Preços</h3>
+            </div>
+        </li>
+    </ul><ul class="slide-navs" style="margin-left: -24px;"><li class="slide-nav-0"><a></a></li><li class="slide-nav-1"><a></a></li><li class="slide-nav-2 current-slide"><a></a></li></ul><a class="prev"></a><a class="next"></a><a class="play-control pause" style="display: none;"></a>
+</div>
+
+<!-- //top-brands -->
+<br />
+<br />
+<br />
+<br />
+<div class="brands">
+    <div class="container">
+        <h3>Nossos Parceiros</h3>
+        @foreach (DTO.Supermercado supermercado in Model)
+        {
+            lista.Add(supermercado);
+            contador++;
+            if (contador % 4 == 0)
+            {
+                vetorMercados[posicao] = lista;
+                lista = new List<DTO.Supermercado>
+                    ();
+                posicao++;
+            }
+            if (contador == Model.Count)
+            {
+                vetorMercados[posicao] = lista;
+            }
+        }
+        @for (int i = 0; i < vetorMercados.Length; i++)
+        {
+            <div class="agile_top_brands_grids">
+
+                @foreach (DTO.Supermercado supermercado in vetorMercados[i])
+                {
+                    <div class="col-md-3 top_brand_left">
+                        <div class="hover14 column">
+                            <div class="agile_top_brand_left_grid">
+                                <div class="agile_top_brand_left_grid1">
+                                    <figure>
+                                        <div class="snipcart-item block">
+                                            <div class="snipcart-thumb">
+                                                <a href="products.html"><img style="height:120px; width:120px" src="data:image/jpeg;base64,@supermercado.Logo" /></a>
+                                                <p>@supermercado.Nome</p>
+                                                <p>@supermercado.Endereco</p>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="clearfix"></div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<!--//brands-->
+<!-- new -->

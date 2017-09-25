@@ -1,0 +1,231 @@
+﻿@model WebApp.Models.ComparadorMercadosViewModels
+@{int contador = 0;}
+
+<div class="top-brands">
+    <div class="container">
+        <h2>MENOR PREÇO</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile_top_brands_grids">
+                            <div class="col-md-4 top_brand_left">
+                                <form>
+                                    @foreach (WebApp.Models.MercadoViewModels mercado in Model.MercadosMenorPreco)
+                                    {
+                                        contador++;
+                                        <div id="listaItens" style="display:none" class="col-md-8">
+
+                                        </div>
+                                        <br />
+                                        <div class="hover14 column">
+                                            <div class="agile_top_brand_left_grid">
+                                                <div class="agile_top_brand_left_grid_pos">
+                                                    <img src="images/offer.png" alt=" " class="img-responsive">
+                                                </div>
+                                                <div class="agile_top_brand_left_grid1">
+                                                    <figure>
+                                                        <div class="snipcart-item block">
+                                                            <div class="snipcart-thumb">
+                                                                <a href="products.html"><img style="height:120px; width:120px" src="data:image/jpeg;base64,@mercado.SuperMercado.Logo" /></a>
+                                                                <p>@mercado.SuperMercado.Nome</p>
+                                                                <p>A @mercado.Proximidade KMs de você</p>
+                                                                <p>Preço final</p>
+                                                                <p>R$@mercado.PrecoFinal</p>
+                                                            </div>
+                                                        </div>
+                                                        <button onclick="showList(@contador)" name="mostrarLista" id="mostrarLista @contador" type="button" value="Mostrar Lista" class="snipcart-details top_brand_home_details" style="position:center; font-size: 14px; color: #fff; background: #3399cc; margin:20px; text-decoration: none; border: none; border-radius: 0; text-transform: uppercase; padding: 5px; outline: none">Lista</button>
+                                                        <div id="lista_@contador" name="lista @contador" style="display:none">
+                                                            @foreach (DTO.Item item in mercado.Itens)
+                                                            {
+                                                                <p id="lista">@item.quantity x @item.item_name R$@item.amount</p>
+                                                            }
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    }
+                                </form>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="container">
+        <h2>MAIS PRÓXIMO</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile_top_brands_grids">
+                            <div class="col-md-4 top_brand_left">
+                                <form>
+                                    @foreach (WebApp.Models.MercadoViewModels mercado in Model.MercadosMaisProximos)
+                                    {
+                                        contador++;
+                                        <br />
+                                        <div class="hover14 column">
+                                            <div class="agile_top_brand_left_grid">
+                                                <div class="agile_top_brand_left_grid_pos">
+                                                    <img src="images/offer.png" alt=" " class="img-responsive">
+                                                </div>
+                                                <div class="agile_top_brand_left_grid1">
+                                                    <figure>
+                                                        <div class="snipcart-item block">
+                                                            <div class="snipcart-thumb">
+                                                                <a href="products.html"><img style="height:120px; width:120px" src="data:image/jpeg;base64,@mercado.SuperMercado.Logo" /></a>
+                                                                <p>@mercado.SuperMercado.Nome</p>
+                                                                <p>A @mercado.Proximidade KMs de você</p>
+                                                                <p>Preço final</p>
+                                                                <p>R$@mercado.PrecoFinal</p>
+                                                            </div>
+                                                        </div>
+                                                        <button onclick="showList(@contador)" name="mostrarLista" id="mostrarLista @contador" type="button" value="Mostrar Lista" class="snipcart-details top_brand_home_details" style="position:center; font-size: 14px; color: #fff; background: #3399cc; margin:20px; text-decoration: none; border: none; border-radius: 0; text-transform: uppercase; padding: 5px; outline: none">Lista</button>
+                                                        <div id="lista_@contador" name="lista @contador" style="display:none">
+                                                            @foreach (DTO.Item item in mercado.Itens)
+                                                            {
+                                                                <p id="lista">@item.quantity x @item.item_name R$@item.amount</p>
+                                                            }
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    }
+                                    @{contador++;}
+                                </form>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="container">
+        <h2>NOSSA SUGESTÃO</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile_top_brands_grids">
+                            <div class="col-md-4 top_brand_left">
+                                <form>
+                                    <br />
+                                    <div class="hover14 column">
+                                        <div class="agile_top_brand_left_grid">
+                                            <div class="agile_top_brand_left_grid_pos">
+                                                <img src="images/offer.png" alt=" " class="img-responsive">
+                                            </div>
+                                            <div class="agile_top_brand_left_grid1">
+                                                <figure>
+                                                    <div class="snipcart-item block">
+                                                        <div class="snipcart-thumb">
+                                                            <a href="products.html"><img style="height:120px; width:120px" src="data:image/jpeg;base64,@Model.MercadoNossaSugestao.SuperMercado.Logo" /></a>
+                                                            <p>@Model.MercadoNossaSugestao.SuperMercado.Nome</p>
+                                                            <p>A @Model.MercadoNossaSugestao.Proximidade KMs de você</p>
+                                                            <p>Preço final</p>
+                                                            <p>R$@Model.MercadoNossaSugestao.PrecoFinal</p>
+                                                        </div>
+                                                    </div>
+                                                    <button onclick="showList(@contador)" name="mostrarLista" id="mostrarLista @contador" type="button" value="Mostrar Lista" class="snipcart-details top_brand_home_details" style="position:center; font-size: 14px; color: #fff; background: #3399cc; margin:20px; text-decoration: none; border: none; border-radius: 0; text-transform: uppercase; padding: 5px; outline: none">Lista</button>
+                                                    <div id="lista_@contador" name="lista @contador" style="display:none">
+                                                        @foreach (DTO.Item item in Model.MercadoNossaSugestao.Itens)
+                                                        {
+                                                            <p id="lista">@item.quantity x @item.item_name R$@item.amount</p>
+                                                        }
+                                                    </div>
+
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </form>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="container">
+        <h2>OUTRAS OPÇÕES</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile_top_brands_grids">
+                            <div class="col-md-4 top_brand_left">
+                                <form>
+                                    @foreach (WebApp.Models.MercadoViewModels mercado in Model.OutrosMercados)
+                                    {
+                                        contador++;
+                                        <br />
+                                        <div class="hover14 column">
+                                            <div class="agile_top_brand_left_grid">
+                                                <div class="agile_top_brand_left_grid_pos">
+                                                    <img src="images/offer.png" alt=" " class="img-responsive">
+                                                </div>
+                                                <div class="agile_top_brand_left_grid1">
+                                                    <figure>
+                                                        <div class="snipcart-item block">
+                                                            <div class="snipcart-thumb">
+                                                                <a href="products.html"><img style="height:120px; width:120px" src="data:image/jpeg;base64,@mercado.SuperMercado.Logo" /></a>
+                                                                <p>@mercado.SuperMercado.Nome</p>
+                                                                <p>A @mercado.Proximidade KMs de você</p>
+                                                                <p>Preço final</p>
+                                                                <p>R$@mercado.PrecoFinal</p>
+                                                            </div>
+                                                        </div>
+                                                        <button onclick="showList(@contador)" name="mostrarLista" id="mostrarLista @contador" type="button" value="Mostrar Lista" class="snipcart-details top_brand_home_details" style="position:center; font-size: 14px; color: #fff; background: #3399cc; margin:20px; text-decoration: none; border: none; border-radius: 0; text-transform: uppercase; padding: 5px; outline: none">Lista</button>
+                                                        <div id="lista_@contador" name="lista @contador" style="display:none">
+                                                            @foreach (DTO.Item item in mercado.Itens)
+                                                            {
+                                                                <p id="lista">@item.quantity x @item.item_name R$@item.amount</p>
+                                                            }
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    }
+                                </form>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showList(contador) {
+        var teste = document.getElementById("mostrarLista " + contador).value;
+        if (teste == "Mostrar Lista") {
+            var element = document.getElementById("mostrarLista " + contador);
+            element.value = "Fechar Lista";
+            $('#lista_' + contador).show();
+        }
+        else {
+            var element = document.getElementById("mostrarLista " + contador);
+            element.value = "Mostrar Lista";
+            $('#lista_' + contador).hide();
+        }
+    }
+</script>

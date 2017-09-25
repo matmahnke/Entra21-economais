@@ -1,0 +1,114 @@
+﻿@model DTO.Supermercado
+<div class="top-brands">
+    <div class="container">
+        <h2>Cadastrar</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">USUÁRIO</a></li>
+                    <li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">PARCEIRO</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile-tp">
+                            <h5>Cadastrar como Usuário</h5>
+                            <p class="w3l-ad">Cadastrando-se como usuário você poderá desfrutar de todos os recursos que a Budg Shop tem para lhe oferecer.</p>
+                            <div class="login-page">
+                                <div class="form">
+                                    <form class="register-form">
+                                        <input type="text" placeholder="name" />
+                                        <input type="password" placeholder="password" />
+                                        <input type="text" placeholder="email address" />
+                                        <button>create</button>
+                                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                                    </form>
+                                    <form method="post" class="login-form">
+                                        <input type="text" name="NomeUser" placeholder="Nome" />
+                                        <br />
+                                        <input type="text" name="SobrenomeUser" placeholder="Sobrenome" />
+                                        <br />
+                                        <input type="text" name="EmailUser" placeholder="Email" />
+                                        <br />
+                                        <input type="text" name="LocalizacaoUser" placeholder="Localização" />
+                                        <br />
+                                        <input type="password" name="SenhaUser" placeholder="Senha" />
+                                        <br />
+                                        <input type="password" placeholder="Confirmar Senha" />
+                                        <br />
+                                        <input type="submit" value="Cadastrar" id="submit" />
+                                        @if (ViewBag.Message1 != null)
+                                        {
+                                            <text>@ViewBag.Message1</text>
+                                        }
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
+                        <div class="agile-tp">
+                            <h5>Cadastrar como Parceiro</h5>
+                            <p class="w3l-ad">Cadastrado como parceiro sua rede fará parte do maior sistema de comparação de preços do Brasil.</p>
+                            <div class="form">
+                                <form class="register-form">
+                                    <input type="text" placeholder="name" />
+                                    <input type="password" placeholder="password" />
+                                    <input type="text" placeholder="email address" />
+                                    <button>create</button>
+                                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                                </form>
+                                <form method="post" class="login-form">
+                                    @Html.TextBoxFor(c => c.Nome, new { placeholder = "Nome" })
+                                    <br />
+                                    @Html.TextBoxFor(c => c.RazaoSocial, new { placeholder = "Razão Social" })
+                                    <br />
+                                    @Html.TextBoxFor(c => c.CNPJ, new { placeholder = "CNPJ" })
+                                    <br />
+                                    @Html.TextBoxFor(c => c.Maps, new { placeholder = "Localização" })
+                                    <br />
+                                    @Html.TextBoxFor(c => c.Endereco, new { placeholder = "Endereço" })
+                                    <br />
+                                    @Html.TextBoxFor(c => c.Telefone, new { placeholder = "Telefone" })
+                                    <br />
+                                    <input type="file" name="logofile" id="logofile" onchange="readFile()" value="" />
+                                    <input type="hidden" name="arraybyte" id="arraybyte">
+                                    <br />
+                                    @Html.TextBoxFor(c => c.Email, new { placeholder = "Email" })
+                                    <br />
+                                    @Html.PasswordFor(c => c.Senha, new { placeholder = "Senha" })
+                                    <br />
+                                    <input type="password" placeholder="Confirmar Senha" />
+                                    <input type="submit" value="Cadastrar" id="submit" />
+                                    @if (ViewBag.Message2 != null)
+                                    {
+                                        <text>@ViewBag.Message2</text>
+                                    }
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function readFile() {
+
+        if (this.files && this.files[0]) {
+
+            var FR = new FileReader();
+
+            FR.addEventListener("load", function (e) {
+                document.getElementById("arraybyte").value = e.target.result;
+            });
+
+            FR.readAsDataURL(this.files[0]);
+        }
+
+    }
+
+    document.getElementById("logofile").addEventListener("change", readFile);
+</script>

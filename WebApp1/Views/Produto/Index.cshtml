@@ -1,0 +1,74 @@
+﻿@model IList<DTO.Produto>
+@{int posicao = 0;
+List<DTO.Produto>[] vetorProdutos = new List<DTO.Produto>[(Model.Count / 4) + 1];
+List<DTO.Produto> lista = new List<DTO.Produto>();
+int contador = 0;}
+
+<div class="top-brands">
+    <div class="container">
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        @foreach (DTO.Produto produto in Model)
+                        {
+                            lista.Add(produto);
+                            contador++;
+                            if (contador % 4 == 0)
+                            {
+                                vetorProdutos[posicao] = lista;
+                                lista = new List<DTO.Produto>();
+                                posicao++;
+                            }
+                            if (contador == Model.Count)
+                            {
+                                vetorProdutos[posicao] = lista;
+                            }
+                        }
+                        @for (int i = 0; i < vetorProdutos.Length; i++)
+                        {
+                            <div class="agile_top_brands_grids">
+                                @foreach (DTO.Produto produto in vetorProdutos[i])
+                                {
+                                    <div class="col-md-3 top_brand_left">
+                                        <div class="hover14 column">
+                                            <div class="agile_top_brand_left_grid">
+                                                <div class="agile_top_brand_left_grid1">
+                                                    <figure>
+                                                        <div class="snipcart-item block">
+                                                            <div class="snipcart-thumb">
+                                                                <a href="products.html"><img style="height:120px; width:120px" src="data:image/jpeg;base64,@produto.Imagem" /></a>
+                                                                <p>@produto.Nome</p>
+                                                                <p>@produto.Peso g</p>
+                                                            </div>
+                                                            <div class="snipcart-details top_brand_home_details">
+                                                                <form action="#" method="post">
+                                                                    <fieldset>
+                                                                        <input type="hidden" name="cmd" value="_cart">
+                                                                        <input type="hidden" name="add" value="1">
+                                                                        <input type="hidden" name="business" value=" ">
+                                                                        <input type="hidden" name="item_name" value="@produto.Nome">
+                                                                        <input type="hidden" name="amount" value="@produto.Peso">
+                                                                        <input type="hidden" name="currency_code" value="BRL">
+                                                                        <input type="hidden" name="return" value=" ">
+                                                                        <input type="hidden" name="cancel_return" value=" ">
+                                                                        <input type="submit" name="submit" value="Adicionar" class="button">
+                                                                    </fieldset>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
